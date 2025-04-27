@@ -1,0 +1,27 @@
+(ns pbranes.sbx.page.home
+  (:require [helix.core :refer [defnc $]]
+            [helix.hooks :as hooks]
+            [helix.dom :as d]))
+
+(defnc greeting
+  "A component which greets the user"
+  [{:keys [name]}]
+  (js/console.log name)
+  (d/div "Hello Joseph"
+         (d/strong name) "!"))
+
+(defn init []
+  (js/console.log "call to init function"))
+
+(defnc Home []
+  (hooks/use-effect
+    :once
+    (init))
+
+  (let [[state set-state] (hooks/use-state {:name ""})]
+
+    (d/div
+      (d/h1 "Welcome!")
+      ($ greeting {:name (:name state)})
+      (d/input {:value (:name state )
+                :on-change #(set-state assoc :name (.. % -target -value))}))))
