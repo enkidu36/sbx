@@ -30,7 +30,7 @@
         (d/li (d/a {:href "#"} "login")))
       (d/ul
         (d/li {:class "hideonmobile"} (d/
-                                       a {:href "#" :class "hideOnMobile"} "PBranesssss"))
+                                       a {:href "#" :class "hideOnMobile"} "PBranes"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Blog"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Product"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Forum"))
