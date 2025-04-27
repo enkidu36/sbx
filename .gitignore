@@ -19,7 +19,5 @@ pom.xml.asc
 /.shadow-cljs/
 /node_modules/
 /public/.DS_Store
-
-*.*~
 /public/js/cljs-runtime/
 /public/js/manifest.edn
