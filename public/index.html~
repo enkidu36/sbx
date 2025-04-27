@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Pbranes Sandbox</title>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/js/main.js"></script>
+
+  </body>
+</html>
