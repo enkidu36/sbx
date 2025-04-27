@@ -24,12 +24,13 @@
     (d/nav
       (d/ul {:class "sidebar"}
         (d/li {:on-click hide-sidebar!} (d/a {:href "#"} close-icon))
-        (d/li (d/a {:href "#"} "Blog"))
-        (d/li (d/a {:href "#"} "Product"))
-        (d/li (d/a {:href "#"} "Forum"))
-        (d/li (d/a {:href "#"} "Login")))
+        (d/li (d/a {:href "#"} "blog"))
+        (d/li (d/a {:href "#"} "product"))
+        (d/li (d/a {:href "#"} "forum"))
+        (d/li (d/a {:href "#"} "login")))
       (d/ul
-        (d/li {:class "hideOnMobile"} (d/a {:href "#" :class "hideOnMobile"} "PBranes"))
+        (d/li {:class "hideonmobile"} (d/
+                                       a {:href "#" :class "hideOnMobile"} "PBranesssss"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Blog"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Product"))
         (d/li {:class "hideOnMobile"} (d/a {:href "#"} "Forum"))
