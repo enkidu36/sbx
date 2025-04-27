@@ -18,7 +18,8 @@ pom.xml.asc
 /.lsp/
 /.shadow-cljs/
 /node_modules/
-/public/js/
 /public/.DS_Store
 
 *.*~
+/public/js/cljs-runtime/
+/public/js/manifest.edn
