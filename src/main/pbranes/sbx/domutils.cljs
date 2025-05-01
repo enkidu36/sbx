@@ -1,6 +1,8 @@
 (ns pbranes.sbx.domutils)
 
-(defn query-selector [select]
-  (js/document.querySelector select))
+(defn query-selector [query]
+  (js/document.querySelector query))
 
-(.. (query-selector "body") -style -background-image)
+
+(defn set-background-image! [image]
+    (set! (.. (query-selector "body") -style -backgroundImage) image))

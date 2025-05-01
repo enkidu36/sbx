@@ -9,10 +9,9 @@
 
 (defnc Router []
   ($ rr/Routes
-     ($ rr/Route {:path "/wdc" :element ($ WebDevCreative)})
      ($ rr/Route {:path "/" :element ($ Layout)}
         ($ rr/Route {:path "/" :element ($ Home)})
-        )))
+        ($ rr/Route {:path "/wdc" :element ($ WebDevCreative)}))))
 
 (defnc app []
   ($ rr/BrowserRouter

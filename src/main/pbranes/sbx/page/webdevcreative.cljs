@@ -1,16 +1,11 @@
 (ns pbranes.sbx.page.webdevcreative
   (:require [helix.core :refer [defnc]]
             [helix.dom :as d]
-            [pbranes.sbx.domutils :refer [query-selector]]))
-
-(defn body-background! []
-  (set! (.. (query-selector "body") -style -backgroundImage) "url('/images/nav-logo.jpg')")
-  )
+            [pbranes.sbx.domutils :refer [query-selector set-background-image!]]))
 
 (defnc WebDevCreative []
-;;  (body-background!)
+  (set-background-image! "url('/images/nav-logo.jpg')")
   (d/main "hello world"))
-
 
 (comment
   (js/console.log (query-selector "body"))
