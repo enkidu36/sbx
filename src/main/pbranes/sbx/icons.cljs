@@ -1,30 +1,40 @@
 (ns pbranes.sbx.icons
-  (:require  [helix.dom :as d]))
+  (:require
+   [helix.core :refer [defnc]]
+   [helix.dom :as d]))
 
-(def menu-icon (d/svg
-                {:xmlns "http://www.w3.org/2000/svg",
-                 :height "24px",
-                 :viewBox "0 -960 960 960",
-                 :width "24px",
-                 :fill "black"}
-                (d/path
-                 {:d
-                  "M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"})))
+(defnc menu-icon
+  [{:keys [size fill] :or {size "24px" fill "white"}}]
+  (d/svg
+    {:xmlns "http://www.w3.org/2000/svg",
+     :height size,
+     :viewBox "0 -960 960 960",
+     :width size,
+     :fill fill}
+    (d/path
+      {:d
+       "m120-240v-80h720v80h120zm0-200v-80h720v80h120zm0-200v-80h720v80h120z"})))
 
-(def close-icon (d/svg
-                 {:xmlns "http://www.w3.org/2000/svg",
-                  :height "24px",
-                  :viewBox "0 -960 960 960",
-                  :width "24px",
-                  :fill "black"}
-                 (d/path
-                  {:d
-                   "m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"})))
+(defnc close-icon
+  [{:keys [size fill] :or {size "24" fill "white"}}]
+  (d/svg
+    {:xmlns "http://www.w3.org/2000/svg",
+     :height size,
+     :viewBox "0 -960 960 960",
+     :width size,
+     :fill fill}
+    (d/path
+      {:d
+       "m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"})))
 
-(def down-arrow-icon (d/svg
-                      {:xmlns "http://www.w3.org/2000/svg",
-                       :height "24px",
-                       :viewBox "0 -960 960 960",
-                       :width "24px",
-                       :fill "#e3e3e3"}
-                      (d/path {:d "M480-360 280-560h400L480-360Z"})))
+(defnc down-arrow-icon
+  [{:keys [size fill] :or {size "24" fill "white"}}]
+  (d/svg
+    {:xmlns "http://www.w3.org/2000/svg",
+     :height size,
+     :viewBox "0 -960 960 960",
+     :width size,
+     :fill fill}
+    (d/path {:d "M480-360 280-560h400L480-360Z"})))
+
+

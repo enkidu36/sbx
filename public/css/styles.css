@@ -75,6 +75,16 @@ nav li:nth-child(4) {
     display:none;
 }
 
+main {
+    height: 80vh;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    height: 200px;
+}
+
 @media (max-width: 800px) {
     .hideOnMobile {
 	display: none;
