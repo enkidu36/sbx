@@ -29,7 +29,7 @@
       (d/li {:class "hideOnmobile"} ($ Link {:to "/" :className "hideOnMobile"} "PBranes"))
       (d/li {:class "hideOnMobile"} ($ Link {:to "/wdc"} "Blog" ($ down-arrow-icon)))
       (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Product" ($ down-arrow-icon)))
-      (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Forum" ($ down-arrow-icon {:fill "black"})))
+      (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Forum" ($ down-arrow-icon )))
       (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Login"))
       (d/li {:class "menu-button" :on-click show-sidebar!} (d/a {:href "#"} ($ menu-icon))))))
    (d/main
