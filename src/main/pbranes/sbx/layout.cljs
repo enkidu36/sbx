@@ -1,9 +1,10 @@
 (ns pbranes.sbx.layout
-  (:require [helix.core :refer [defnc $ <>]]
+  (:require [helix.core :refer [defnc fnc $ <>]]
             [helix.dom :as d]
-            [pbranes.sbx.icons :refer [down-arrow-icon close-icon menu-icon]]
-            [pbranes.sbx.domutils :refer [query-selector]]
-            [react-router-dom :refer [Outlet, Link]]))
+            [pbranes.sbx.domutils :refer [->class query-selector]]
+            [pbranes.sbx.icons :refer [close-icon down-arrow-icon menu-icon]]
+            [react-router-dom :refer [Outlet, Link]]
+            [helix.hooks :as hooks]))
 
 (defn set-sidbar-display! [value]
   (set! (.. (query-selector ".sidebar") -style -display) value))
@@ -14,25 +15,65 @@
 (defn hide-sidebar! []
   (set-sidbar-display! "none"))
 
+(defnc Sidbar []
+  (d/nav
+   (d/ul {:class "sidebar"}
+         (d/li {:on-click hide-sidebar!} ($ Link {:to "#"} ($ close-icon {:fill "white"})))
+         (d/li ($ Link {:class "nav-logo" :to "/"} "PBranes"))
+         (d/li ($ Link {:to "/wdc"} "Blog"))
+         (d/li ($ Link {:to "#"} "product"))
+         (d/li ($ Link {:to "#"} "forum"))
+         (d/li ($ Link {:to "#"} "login")))))
+
+(defnc NavItem [{:keys [children] :as props}]
+  (d/li {:className " link hideOnMobile"}
+        children))
+
+(defnc Navbar [{:keys [children] :as props}]
+  (d/nav
+   (d/ul children)))
+
+(defn show-menu [menu]
+  (let [menu (query-selector (->class menu))]
+    (set! (.. menu -style -display) "flex")))
+
+(defn hide-menu [menu]
+  (let [menu (query-selector (->class menu))]
+    (set! (.. menu -style -display) "none")))
+
+(defnc dropdown [{:keys [name children menu-class] :or {name "dropdown"}}]
+  (d/a
+   {:onMouseOver #(show-menu menu-class) :style {:position "relative"}}
+   name ($ down-arrow-icon)
+
+   (when children
+     (d/div {:class (str "menu-wrapper " menu-class) :onMouseOut #(hide-menu menu-class)}
+        ;; Make a transparent menu item to fill in the gap between the menu name
+        ;; and the menu so that mouse out will work
+            (d/div {:style {:background-color "transparent" :height "64px"}})
+            (d/div {:class "dropdown-menu"}
+                   children)))))
+
 (defnc Layout []
+
   (<>
-   (d/nav
-    (d/ul {:class "sidebar"}
-          (d/li {:on-click hide-sidebar!} ($ Link {:to "#"} ($ close-icon {:fill "white"})))
-          (d/li ($ Link {:to "/"} "PBranes"))
-          (d/li ($ Link {:to "/wdc"} "Blog"))
-          (d/li ($ Link {:to "#"} "product"))
-          (d/li ($ Link {:to "#"} "forum"))
-          (d/li ($ Link {:to "#"} "login")))
-    (d/nav
-     (d/ul
-      (d/li {:class "hideOnmobile"} ($ Link {:to "/" :className "hideOnMobile"} "PBranes"))
-      (d/li {:class "hideOnMobile"} ($ Link {:to "/wdc"} "Blog" ($ down-arrow-icon)))
-      (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Product" ($ down-arrow-icon)))
-      (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Forum" ($ down-arrow-icon )))
-      (d/li {:class "hideOnMobile"} ($ Link {:to "#"} "Login"))
-      (d/li {:class "menu-button" :on-click show-sidebar!} (d/a {:href "#"} ($ menu-icon))))))
+    ;;   ($ Sidbar)
+   ($ Navbar
+      ($ NavItem
+         ($ Link {:to "/" :className "nav-logo hideOnMobile"} "Pbranes"))
+      ($ NavItem
+         ($ dropdown {:name "Blog" :menu-class "blog-menu"}
+            (d/div "hello menu")
+            (d/div "another item in menu")))
+      ($ NavItem
+         ($ dropdown {:name "Forum" :menu-class "forum-menu"}
+            (d/div "forum menu")
+            (d/div "another item in menu")))
+      
+      ($ NavItem
+         ($ Link {:to "/"} "Login"))
+      (d/li {:className "menu-button"} (d/a {:href "#"} ($ menu-icon))))
    (d/main
     ($ Outlet))
-   (d/footer "Hello footer")))
+   (d/footer)))
 
