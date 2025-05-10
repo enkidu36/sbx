@@ -8,6 +8,9 @@
     --border: 1px solid #484a4d;
     --border-radius: 8px;
     --speed: 500ms;
+
+    --color-gray: #232429;
+    --color-light-gray: darkgrey;
 }
 
 
@@ -36,7 +39,7 @@ nav {
     text-transform: uppercase;
     text-decoration-line: underline;
     text-decoration-style: dotted;
-    text-decoration-color: white;
+    text-decoration-color: var(--text-color);
  }
 
 nav ul {
@@ -53,44 +56,31 @@ nav li {
     height: var(--nav-size);
 }
 
-nav a {
-    display: flex;
-    align-items: center;
-    height: 60px;
-    color: white;
-}
-
 nav li:hover {
     border-bottom: 2px solid var(--menu-hover-accent);
 }
 
+nav a {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    color: var(--text-color);
+}
 
 nav li:nth-child(4) {
     margin-right: auto;
 }
 
+
+/****************************************
+ Navigation Dropdown classs
+ ****************************************/
 .dropdown-wrapper {
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: transparent;
     position: absolute;
-    top: 0px;
-}
+    top: 0;
 
-.blog-dropdown {
-    display: none;
-}
-
-.blog-dropdown > div:first-child {
-    width: 100px;
-}
-
-
-.forum-dropdown {
-    display: none;
-}
-
-.forum-dropdown > a:first-child {
-    width: 100px;
 }
 
 .dropdown-menu {
@@ -104,23 +94,44 @@ nav li:nth-child(4) {
 
 .dropdown-link {
     background-color: black;
-    padding: 8px;
+    padding: 2px 8px 2px 8px;
 }
 
-.dropdown-menu > .dropdown-link:nth-child(n+2) {
-    min-width: 200px;
-    color: orange;
-}
+
+.dropdown-menu > .dropdown-link:nth-child(n+1) {
+    min-width: 240px;
+    border-bottom: 0.25px solid darkgray;
+    transition: all 500ms ease-in;
+} 
 
 .dropdown-menu > .dropdown-link:nth-child(1) {
     border-top: 2px solid white;
-    border-bottom: 0.25px solid darkgray;
 }
 
 .dropdown-menu > .dropdown-link:last-child {
     border-bottom: 2px solid white;
 }
 
+.dropdown-menu > .dropdown-link:hover {
+    background: var(--color-gray);
+    color: var(--menu-hover-accent);
+}
+
+.groups-dropdown {
+    display: none;
+}
+
+.groups-dropdown > div:first-child {
+    width: 100px;
+}
+
+.solutions-dropdown {
+    display: none;
+}
+
+.solutions-dropdown > a:first-child {
+    width: 100px;
+}
 
 .sidebar {
     position: fixed;
