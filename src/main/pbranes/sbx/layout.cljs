@@ -41,18 +41,21 @@
   (let [menu (query-selector (->class menu))]
     (set! (.. menu -style -display) "none")))
 
+(defnc dropdown-link [props]
+   (d/a {:href (:href props) :class "dropdown-link"} (:children props)))
+
 (defnc dropdown [{:keys [name children menu-class] :or {name "dropdown"}}]
   (d/a
-   {:onMouseOver #(show-menu menu-class) :style {:position "relative"}}
-   name ($ down-arrow-icon)
+    {:onMouseOver #(show-menu menu-class) :style {:position "relative"}}
+    name ($ down-arrow-icon)
 
-   (when children
-     (d/div {:class (str "menu-wrapper " menu-class) :onMouseOut #(hide-menu menu-class)}
+    (when children
+      (d/div {:class (str "menu-wrapper " menu-class) :onMouseOut #(hide-menu menu-class)}
         ;; Make a transparent menu item to fill in the gap between the menu name
         ;; and the menu so that mouse out will work
-            (d/div {:style {:background-color "transparent" :height "64px"}})
-            (d/div {:class "dropdown-menu"}
-                   children)))))
+        (d/div {:style {:background-color "transparent" :height "64px"}})
+        (d/div {:class "dropdown-menu"}
+          children)))))
 
 (defnc Layout []
 
@@ -63,12 +66,14 @@
          ($ Link {:to "/" :className "nav-logo hideOnMobile"} "Pbranes"))
       ($ NavItem
          ($ dropdown {:name "Blog" :menu-class "blog-menu"}
-            (d/div "hello menu")
-            (d/div "another item in menu")))
+            ($ dropdown-link {:href "#"} "Enviromental Mapping")
+            ($ dropdown-link {:href "#"} "Natural Hazards")
+            ($ dropdown-link {:href "#"} "Ecosystem Services")
+            ($ dropdown-link {:href "#"} "Forest & Agricultural Management")))
       ($ NavItem
          ($ dropdown {:name "Forum" :menu-class "forum-menu"}
-            (d/div "forum menu")
-            (d/div "another item in menu")))
+            ($ dropdown-link "forum menu")
+            ($ dropdown-link "another item in menu")))
       
       ($ NavItem
          ($ Link {:to "/"} "Login"))
