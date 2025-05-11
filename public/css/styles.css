@@ -67,7 +67,7 @@ nav a {
     color: var(--text-color);
 }
 
-nav li:nth-child(4) {
+nav li:nth-child(3) {
     margin-right: auto;
 }
 
