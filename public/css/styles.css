@@ -21,7 +21,6 @@
 
 body {
     min-height: 100vh;
-    /* background-image: url("/images/nav-logo.jpg"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -29,8 +28,8 @@ body {
 }
 
 nav {
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .nav-logo {
@@ -81,7 +80,13 @@ nav li:nth-child(3) {
 
 /****************************************
  Navigation Dropdown classs
- ****************************************/
+****************************************/
+.dropdown-root-link {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    color: var(--text-color);
+}
 .dropdown-wrapper {
     flex-direction: column;
     background-color: transparent;
@@ -191,5 +196,10 @@ footer {
     .sidebar {
 	width: 100%;
     }
+}
+
+.down-icon {
+    color: yellow;
+    rotate: 180deg;
 }
 

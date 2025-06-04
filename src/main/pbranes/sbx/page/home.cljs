@@ -5,8 +5,8 @@
             [pbranes.sbx.domutils :refer [set-background-image!]]))
 
 (defn init []
-  (js/console.log "call to init function")
-  (set-background-image! "url('/images/nav-logo.jpg')"))
+
+  (set-background-image! "url('/images/beast-n-friend.png')"))
 
 (defnc Home []
   (hooks/use-effect

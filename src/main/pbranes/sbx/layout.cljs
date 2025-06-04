@@ -40,15 +40,15 @@
   (let [menu (query-selector (->class menu))]
     (set! (.. menu -style -display) "none")))
 
-(defnc dropdown-link [props]
-  (d/a {:href (:href props) :class "dropdown-link"} (:children props)))
+(defnc dropdown-link [{:keys [href children]:as props}]
+  (d/a {:href href :class "dropdown-link"} children))
 
 (defnc dropdown
   "Dropdown menu component"
   [{:keys [name menu-class children] :or {name "dropdown"}}]
-  (d/a
-   {:onMouseOver #(show-menu menu-class)
-    :style {:position "relative"}} name ($ down-arrow-icon)
+  (d/div
+   {:class "dropdown-root-link" :onMouseOver #(show-menu menu-class)
+    :style {:position "relative"}} name ($ down-arrow-icon {:class ".down-icon"})
 
    (when children
      (d/div {:class (str "dropdown-wrapper " menu-class)
@@ -64,9 +64,9 @@
 
 (defnc Layout []
   (<>
-   ($ Sidbar
-      ($ SideItem
-         ($ Link {:to "/"} "Environment Mapping")))
+   ;; ($ Sidbar
+   ;;    ($ SideItem
+   ;;       ($ Link {:to "/"} "Environment Mapping")))
    ($ Navbar
       ($ NavItem
          ($ Link {:to "/" :className "nav-logo hideOnMobile"} "Wagon Station"))
@@ -76,8 +76,9 @@
             ($ dropdown-link {:href "#"} "Enviromental Mapping")
             ($ dropdown-link {:href "#"} "Natural Hazards")
             ($ dropdown-link {:href "#"} "Ecosystem Services")
-            ($ dropdown-link {:href "#"} "Forest & Agricultural Management")))
-
+            ($ dropdown-link {:href "#"} "Forest & Agricultural Management")
+            ))
+          
       ($ NavItem
          ($ dropdown {:name "Solutions" :menu-class "solutions-dropdown"}
             ($ dropdown-link {:href "#"} "Enviromental Mapping")
@@ -87,7 +88,9 @@
 
       ($ NavItem
          ($ Link {:to "/"} "Login"))
-      (d/li {:className "menu-button"} (d/a {:href "#" :on-click show-sidebar!} ($ menu-icon))))
+
+      (d/li {:className "menu-button"} (d/a {:href "#" :on-click show-sidebar!} ($ menu-icon)))
+      )
    (d/main
     ($ Outlet))
    (d/footer)))
